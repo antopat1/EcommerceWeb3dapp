@@ -11,7 +11,7 @@
     min-height: 500px;
     min-width: 300px;
     max-width: 700px;
-    color: white;
+    color: rgb(242, 12, 12);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -62,7 +62,7 @@
   }
   
   .purchaseDetails {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(63, 63, 63);
     padding: 15px;
     border-radius: 10px;
     margin: 20px 0;
@@ -74,7 +74,7 @@
   .purchaseDetails p {
     margin: 8px 0;
     font-size: 16px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgb(252, 3, 3);
   }
   
   .buttonsContainer {
@@ -156,6 +156,24 @@
     }
   
     .purchaseDetails p {
-      font-size: 18px;
+      font-size: 14px;
     }
   }
+
+
+
+  @media screen and (max-width: 768px) {
+  
+    .purchaseDetails p {
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width: 574px) {
+  
+    .purchaseDetails p {
+      font-size: 9px;
+    }
+  }
+
+ 

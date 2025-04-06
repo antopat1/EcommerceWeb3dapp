@@ -27,7 +27,7 @@ const SuccessPage: React.FC = () => {
     const purchasesJSON = localStorage.getItem("articlePurchases");
     if (purchasesJSON) {
       const purchases: PurchaseI[] = JSON.parse(purchasesJSON);
-      const foundPurchase = purchases.find(p => p.articleId === id);
+      const foundPurchase = purchases.find((p) => p.articleId === id);
       if (foundPurchase) {
         setPurchase(foundPurchase);
       } else {
@@ -88,24 +88,35 @@ const SuccessPage: React.FC = () => {
       <div className={styles.showPageContainer}>
         <img
           className={styles.abstractIMG}
-          src="/assets/img/about-hero.jpg" 
+          src="https://bafkreiab6xms6xrp3bpqcypfyewujxjc6tdfy672x5ocigrdl4dwbsylbq.ipfs.dweb.link/"
           alt="Abstract Background"
         />
-        
+
         <h2>
           Hai acquistato con successo <br /> {article.strArticle}
         </h2>
-        
+
         <div className={styles.containerIMG}>
           <img src={article.strArticleThumb} alt={article.strArticle} />
         </div>
-        
+
         <div className={styles.purchaseDetails}>
           <p>Prezzo pagato: {purchase.price} ETH</p>
-          <p>ID Transazione: {purchase.txHash.slice(0, 10)}...{purchase.txHash.slice(-10)}</p>
+          <p>
+            Id_Tx:&nbsp;  
+            <a
+              href={`https://sepolia.etherscan.io/tx/${purchase.txHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {purchase.txHash.slice(0, 40)}...
+              <br />
+              ..{purchase.txHash.slice(-26)}
+            </a>
+          </p>
           <p>Data: {new Date(purchase.timestamp).toLocaleString()}</p>
         </div>
-        
+
         <div className={styles.buttonsContainer}>
           <Link to="/">
             <button>Torna alla Home</button>
