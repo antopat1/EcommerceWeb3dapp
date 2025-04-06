@@ -93,7 +93,7 @@ const SuccessPage: React.FC = () => {
         />
 
         <h2>
-          Hai acquistato con successo <br /> {article.strArticle}
+          Complimenti! <br/>Hai acquistato con successo <br /> " {article.strArticle} "
         </h2>
 
         <div className={styles.containerIMG}>
