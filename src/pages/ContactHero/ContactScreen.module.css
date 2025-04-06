@@ -1,0 +1,133 @@
+/* ContactScreen.module.css */
+
+/* Container principale dell'Hero */
+.contactHero {
+  display: -moz-grid;
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
+  height: 100%;
+  align-items: center;
+  margin-top: -40px;
+}
+
+.contactHeroText {
+  width: 100%;
+  display: -moz-grid;
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 2rem;
+  color: #f72585ff;
+
+}
+
+.contactHeroTitle {
+  margin-top: 1rem;
+  display: -moz-grid;
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
+  gap: 1rem;
+}
+
+.contactTitle {
+  line-height: 1.05;
+  -webkit-text-stroke: 2px rgba(250, 203, 203, 0.608);
+
+}
+
+.contactSubtitle {
+  color: rgba(37, 160, 247, 0.242);
+  line-height: 1.6;
+  font-weight: 500;
+  max-width: 55ch;
+  margin: auto;
+  -webkit-text-stroke: 2px rgb(255, 255, 255);
+
+}
+
+.contactFormContainer {
+  width: 50%;
+  margin-top: 2rem;
+  margin-left: 25%;
+  display: -moz-grid;
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
+  background-color: rgba(252, 231, 231, 0.923);
+  border-radius: var(--radius);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.758); /* Ombra più marcata */
+  transition: box-shadow 0.3s; /* Transizione fluida */
+  border-radius: 8px;
+}
+
+.contactForm {
+  display: -moz-grid;
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
+  gap: 1rem;
+
+}
+
+.formGroup {
+  display: -moz-grid;
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
+  gap: 0.4rem;
+
+}
+
+.formLabel {
+  text-transform: lowercase;
+  text-align: left;
+  font-variant: small-caps;
+  font-weight: 700;
+  font-size: 1.2em;
+  color: rgba(66, 66, 66, 0.912);
+}
+
+.formInput {
+  border-radius: 0;
+  border: 0px 0px 1px 0px solid var(--dark-gray);
+  padding-left: 0.1rem;
+  letter-spacing: var(--letter-spacing);
+  background-color: rgba(252, 231, 231, 0.923);
+  width: 100%;
+}
+
+.submitButton {
+  justify-self: center;
+  align-self: center;
+  border-radius: 22px;
+  box-shadow: var(--light-shadow);
+  background-color: rgba(66, 66, 66, 0.912);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: var(--flickr-pink);
+}
+
+@media screen and (min-width: 992px) {
+  .contactFormContainer {
+    margin-top: 4rem;
+  }
+
+  .contactHeroText {
+    margin-top: 4rem;
+  }
+  .contactHero {
+    margin-top: -85px;
+  }
+  
+}

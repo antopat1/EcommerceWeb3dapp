@@ -1,0 +1,97 @@
+/* === ABOUT HERO === */
+
+.aboutHero {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+.aboutText {
+  position: relative;
+  text-align: center;
+  margin-top: 50px;
+  line-height: 1.5;
+  max-width: 45ch;
+  color: var(--light-gray);
+}
+
+.aboutText h3 {
+  line-height: 1.4;
+  font-style: italic;
+}
+
+@media screen and (min-width: 992px) {
+  .aboutText {
+    max-width: 65ch;
+  }
+}
+
+/* === ABOUT TEAM SECTION === */
+
+.aboutTeam {
+  margin: 0 auto;
+  background-color: white;
+}
+
+.aboutTeamContent {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+
+.cardSection {
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+
+/* Stile per l'immagine del team */
+.teamImg {
+  position: relative;
+  height: 70vh;
+}
+
+.teamImg::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100.1%;
+  background-color: white;
+  height: 15vh;
+  clip-path: polygon(100% 40%, -40% 110%, 100% 100%);
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 753px) {
+  .teamImg::before {
+    clip-path: polygon(100% 10%, -20% 100%, 100% 100%);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .aboutTeamContent {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+    gap: 3rem;
+  }
+
+  .cardSection {
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: unset;
+  }
+
+  .teamImg::before {
+    clip-path: polygon(100% 0, -50% 130%, 100% 100%);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .cardSection {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    flex-wrap: wrap;
+  }
+}

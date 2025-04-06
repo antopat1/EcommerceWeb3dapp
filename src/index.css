@@ -1,68 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap");
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colors */
+  --trypan-blue-2: #3a0ca3ff;
+  --flickr-pink: #f72585ff;
+  --byzantine: #b5179eff;
+  --light-pink: #ffc6ff;
+  --text-color: #fd0505;
+  --dark-text-color: rgb(44, 44, 44);
+  --delete-color: #df372b;
+  --divider-color: rgba(0, 0, 0, 0.1);
+  --dark-bg: #222;
+  --soft-dark: #272724;
+  /*Scala di Grigi*/
+  --extra-light-gray: #f8f9faff;
+  --soft-light-gray: #f2f2f3;
+  --light-gray: #ced4daff;
+  --primary-gray: #adb5bdff;
+  --soft-dark-gray: #89949e;
+  --dark-gray: #6c757dff;
+  --extra-dark-gray: #343a40ff;
+  /* Global */
+  --letter-spacing: 0.08rem;
+  --transition: all 0.2s ease;
+  --btn-transition: all 0.125s ease;
+  --radius: 0.25rem;
+  --img-radius: 0.25rem 0.25rem 0rem 0rem;
+  --card-radius: 0rem 0rem 0.25rem 0.25rem;
+  --btn-radius: 16px;
+  --light-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 4px 5px 15px rgba(5, 6, 6, 0.4);
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+body {
+  background-color: white;
+  color: var(--dark-text-color);
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* GLOBAL STYLE */
+ul {
+  list-style-type: none;
+}
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  text-decoration: none;
+  color: unset;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+hr {
+  border: none;
+  border-bottom: 1px solid var(--divider-color);
 }
 
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--letter-spacing);
+}
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  color: var(--primary-gray);
+  font-size: 0.9rem;
+  letter-spacing: var(--letter-spacing);
+}
+@media screen and (min-width: 753px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.25rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.btn {
+  display: inline-block;
+  border: none;
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--btn-radius);
+  box-shadow: var(--light-shadow);
+  letter-spacing: var(--letter-spacing);
+  font-size: 0.55rem;
+  transition: var(--btn-transition);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-weight: 700;
+  text-transform: uppercase;
+} */
+
+.icon-btn {
+  padding: 0.4rem 0.2rem;
+  background-color: transparent;
+  box-shadow: unset;
+  justify-self: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.icon {
+  font-size: 1rem;
+  color: var(--flickr-pink);
 }
+
+.underline,
+.topline {
+  position: absolute;
+  bottom: -13px;
+  height: 2px;
+  width: 80%;
+  background-color: var(--flickr-pink);
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius);
+}
+
+.topline {
+  top: -13px;
+}
+
+
+.btn-group {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--flickr-pink);
+  color: white;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 0.9rem 1.8rem;
+  width: fit-content;
+}
+
+.btn-primary:hover {
+  background-color: var(--byzantine);
+  transform: scale(1.02);
+}
+
+
+
+
+
+

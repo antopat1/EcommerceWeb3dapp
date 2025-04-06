@@ -1,0 +1,28 @@
+.wrapper {
+    margin-top: 3rem;
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: 20vh;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+  }
+  
+  @media screen and (min-width: 753px) {
+    .wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .wrapper {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  
+  @media screen and (min-width: 1280px) {
+    .wrapper {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+  

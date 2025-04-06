@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./states/store"; // Importa lo store Redux
+import HomePage from "../src/pages/HomePage/HomePage";
+import AboutScreen from "./pages/AboutHero/AboutScreen";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import ContactScreen from "./pages/ContactHero/ContactScreen";
+import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/SideBar/Sidebar";
+import Footer from "./components/Footer/Footer";
+import SingleArticleScreen from "./pages/SingleArticleScreen/SingleArticleScreen";
 
-function App() {
-  const [count, setCount] = useState(0)
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
 
+import "./index.css";
+
+const App: React.FC = () => {
+  
+  console.log("✅ App.tsx montato!");
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Provider store={store}> 
+      <Router> 
+        <Navbar />
+        <Sidebar />      
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path='/about' element={<AboutScreen />} />
+          <Route path='/contattaci' element={<ContactScreen />} />
+          <Route path='/article/:id' element={<SingleArticleScreen />} />
+          
+          <Route path="/success/:id" element={<SuccessPage />} />
+          
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes> 
+        <Footer />     
+      </Router>
+      
+    </Provider>
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,89 @@
+.article {
+  cursor: pointer;
+  position: relative;
+  width: 70%;
+  margin: auto;
+  border-radius: var(--img-radius);
+  display: flex; /* Cambiato da grid a flex */
+  flex-direction: column;
+  box-shadow: var(--light-shadow);
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  height: 300px;
+  border-radius: var(--img-radius);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cardTextSm {
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardText {
+  display: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.seeMoreBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: var(--transition);
+}
+
+.seeMoreBtn:hover svg,
+.seeMoreBtn:hover h5 {
+  color: var(--byzantine);
+}
+
+.seeMoreBtn:hover h5 {
+  text-decoration: underline;
+}
+
+/* Stili per desktop */
+@media screen and (min-width: 992px) {
+  .article {
+    width: 100%;
+    margin: unset;
+  }
+
+  .cardText {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-color);
+    transition: var(--transition);
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cardText h4 {
+    color: white;
+    font-size: small;
+  }
+
+  /* 🔹 Aggiunto selettore più specifico per attivare l'animazione */
+  .cardText.showInfo {
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    height: 20%;
+  }
+
+  .cardTextSm {
+    display: none;
+  }
+}

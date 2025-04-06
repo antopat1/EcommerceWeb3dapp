@@ -1,0 +1,172 @@
+.nav {
+  background-color: #f7258418;
+  height: 4rem;
+  box-shadow: var(--light-shadow);
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  align-items: center;
+}
+
+.navHeader {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navBrand {
+  margin-bottom: 1.5rem;
+  
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+  color: var(--flickr-pink); 
+  font-weight: bold;
+}
+
+.navToggler {
+  font-size: 1.5rem;
+  padding-bottom: 0;
+  align-self: center;
+  transition: var(--btn-transition);
+  
+}
+
+.navToggler:hover .navIcon {
+  transform: rotateZ(90deg);
+  
+}
+
+.navLinks {
+  display: none;
+}
+
+.navLink {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.navText {
+  font-size: 1.3rem;
+  text-transform: lowercase;
+  font-variant: small-caps;
+  margin: 0;
+  padding: 0;
+}
+
+.navIcon {
+  font-size: 1.6rem;
+  align-self: center;
+  color: rgba(66, 66, 66, 0.912);
+}
+
+
+
+.socialTop {
+  display: none;
+}
+
+
+.navItem {
+  transition: var(--btn-transition);
+}
+
+.navItem:hover {
+  color: var(--flickr-pink);
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navItem:hover .navIcon {
+  color: var(--flickr-pink);
+}
+
+@media screen and (min-width: 992px) {
+  .nav {
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    -ms-justify-content: space-around;
+    justify-content: space-around;
+    height: 5rem;
+  }
+
+  .container {
+    width: 90%;
+  }
+
+  .navContainer {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+  }
+
+  .navHeader {
+    text-align: left;
+    width: fit-content;
+  }
+
+  .linksContainer {
+    justify-self: center;
+  }
+  
+  .navToggler {
+    display: none;
+  }
+
+  .navLinks {
+    width: 50%;
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+  }
+
+  .navIcon {
+    font-size: 1.6rem;
+  }
+
+  .socialTop {
+    display: grid;
+    display: -moz-grid;
+    display: -ms-grid;
+    display: -webkit-grid;
+    align-items: center;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+  
+}

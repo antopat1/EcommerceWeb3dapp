@@ -1,0 +1,26 @@
+.wrapper {
+    justify-self: flex-start;
+    margin: 2rem 0;
+    margin-left: 130px;
+    background-color: rgba(255, 10, 84, 0.2);
+    color: rgba(255, 10, 84, 0.8);
+    border: 1px solid rgba(255, 10, 84, 1);
+    height: 50px;
+    border-radius: 0.35rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+  
+  .wrapper h4 {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    color: inherit;
+  }
+  
+  @media screen and (min-width: 992px) {
+    .wrapper {
+      width: 60%;
+    }
+  }
+  

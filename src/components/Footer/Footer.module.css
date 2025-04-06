@@ -1,0 +1,22 @@
+.footer {
+    background-color: rgb(69, 69, 69);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .text {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .brandColor {
+    color: var(--flickr-pink); 
+    font-weight: bold;
+  }

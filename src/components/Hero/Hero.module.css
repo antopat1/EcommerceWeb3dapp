@@ -1,0 +1,37 @@
+.heroImgContainer {
+    width: 100%;
+    height: 410px; 
+    margin-top: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 27, 63, 0.639); 
+  }
+  
+  .heroContainer {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-left: 120px ;
+    margin-top: 25px ;
+  }
+
+  .fullHeight {
+    height: 100vh; 
+  }
+  
+  
