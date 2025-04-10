@@ -1,5 +1,5 @@
 import React from "react";
-import Lottie from "lottie-react"; 
+import Lottie from "lottie-react";
 import animationData from "../../assets/animation/not-found.json";
 import { Link } from "react-router-dom";
 import useTitle from "../../customHook/useTitle";
@@ -22,4 +22,3 @@ const NotFoundPage: React.FC = () => {
 };
 
 export default NotFoundPage;
-
