@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Balance.module.css";
 import { BrowserProvider, formatEther } from "ethers";
+import { setWalletConnection, setWalletBalance, setWalletAddress } from "../../states/walletSlice";
+import { RootState, AppDispatch } from "../../states/store";
 
 const Balance: React.FC = () => {
-  const [balance, setBalance] = useState<string | null>(null);
-  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const { isConnected, balance } = useSelector((state: RootState) => state.wallet);
 
   useEffect(() => {
     const checkIfConnected = async (): Promise<void> => {
@@ -18,14 +21,17 @@ const Balance: React.FC = () => {
           if (accounts.length > 0) {
             const balanceBigInt = await provider.getBalance(accounts[0]);
             const formatted = formatEther(balanceBigInt);
-            setBalance(formatted);
-            setIsConnected(true);
+            dispatch(setWalletBalance(formatted));
+            dispatch(setWalletAddress(accounts[0]));
+            dispatch(setWalletConnection(true));
           } else {
-            setIsConnected(false);
+            dispatch(setWalletConnection(false));
+            dispatch(setWalletAddress(null));
           }
         } catch (error) {
           console.error("Errore nel controllo della connessione:", error);
-          setIsConnected(false);
+          dispatch(setWalletConnection(false));
+          dispatch(setWalletAddress(null));
         }
       }
     };
@@ -48,7 +54,7 @@ const Balance: React.FC = () => {
         window.ethereum.removeListener('chainChanged', handleAccountsChanged);
       }
     };
-  }, []);
+  }, [dispatch]);
 
   if (!isConnected || balance === null) return null;
   

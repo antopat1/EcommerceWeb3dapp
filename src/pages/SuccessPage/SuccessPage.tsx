@@ -1,44 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import styles from "./SuccessPage.module.css";
 import useFetch from "../../customHook/useFetch";
 import Loading from "../../components/Loading/Loading";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-
-interface PurchaseI {
-  articleId: string;
-  articleName: string;
-  price: string;
-  buyerAddress: string;
-  txHash: string;
-  chainId?: number;
-  timestamp: number;
-}
+import { RootState } from "../../states/store";
 
 const SuccessPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data, isLoading, isError } = useFetch(`i=${id}`);
-  const [purchase, setPurchase] = useState<PurchaseI | null>(null);
+  
+  // Usa Redux per ottenere gli acquisti invece di localStorage
+  const { purchases } = useSelector((state: RootState) => state.purchase);
+  const purchase = purchases.find((p) => p.articleId === id);
 
   useEffect(() => {
-    // Recupera i dettagli dell'acquisto dal localStorage
-    const purchasesJSON = localStorage.getItem("articlePurchases");
-    if (purchasesJSON) {
-      const purchases: PurchaseI[] = JSON.parse(purchasesJSON);
-      const foundPurchase = purchases.find((p) => p.articleId === id);
-      if (foundPurchase) {
-        setPurchase(foundPurchase);
-      } else {
-        // Se non viene trovato l'acquisto, reindirizza alla home
-        navigate("/");
-      }
-    } else {
-      // Se non ci sono acquisti, reindirizza alla home
+    // Se non viene trovato l'acquisto, reindirizza alla home
+    if (!purchase) {
       navigate("/");
     }
-  }, [id, navigate]);
+  }, [purchase, navigate]);
 
   if (isLoading) {
     return (

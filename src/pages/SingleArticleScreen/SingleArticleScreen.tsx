@@ -1,32 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
-import { FaLock } from "react-icons/fa"; // Icona lucchetto
+import { FaLock } from "react-icons/fa"; 
 import { IoChevronBackCircle, IoChevronForwardCircle } from "react-icons/io5"; // Icone frecce laterali
 import { useAccount, useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
+import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../../customHook/useFetch";
 import Loading from "../../components/Loading/Loading";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./SingleArticleScreen.module.css";
 
+// Redux actions
+import { setPurchasing, setError, addPurchase, clearError } from "../../states/purchaseSlice";
+import { setCurrentArticles, setCurrentIndex } from "../../states/articleNavigationSlice";
+import { RootState, AppDispatch } from "../../states/store";
+
 // Indirizzo del venditore 
 import { addressGianni } from "../../utils/utils";
-
-interface ErrorI {
-  errorName: string;
-  errorMessage: string;
-}
-
-interface PurchaseI {
-  articleId: string;
-  articleName: string;
-  price: string;
-  buyerAddress: string;
-  txHash: string;
-  chainId?: number;
-  timestamp: number;
-}
 
 const SingleArticleScreen: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,51 +26,55 @@ const SingleArticleScreen: React.FC = () => {
   const account = useAccount();
   const { sendTransaction } = useSendTransaction();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   
-  const [errorTx, setErrorTx] = useState<ErrorI | null>(null);
-  const [isPurchasing, setIsPurchasing] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  // Selettori Redux
+  const { isPurchasing, error, purchases } = useSelector((state: RootState) => state.purchase);
+  const { currentArticles, currentIndex } = useSelector((state: RootState) => state.articleNavigation);
+
+  // Effetto per salvare tutti gli articoli nello stato Redux
+  useEffect(() => {
+    if (allArticlesData.articles) {
+      dispatch(setCurrentArticles(allArticlesData.articles));
+    }
+  }, [allArticlesData.articles, dispatch]);
 
   // Effetto per trovare l'indice dell'articolo corrente nell'array di tutti gli articoli
   useEffect(() => {
-    if (allArticlesData.articles && id) {
-      const index = allArticlesData.articles.findIndex(article => article.idArticle === id);
-      setCurrentIndex(index);
+    if (currentArticles && id) {
+      const index = currentArticles.findIndex(article => article.idArticle === id);
+      dispatch(setCurrentIndex(index));
     }
-  }, [allArticlesData.articles, id]);
+  }, [currentArticles, id, dispatch]);
 
   // Funzione per navigare all'articolo precedente
   const goToPrevious = () => {
-    if (!allArticlesData.articles || allArticlesData.articles.length === 0) return;
+    if (!currentArticles || currentArticles.length === 0) return;
     
     let newIndex = currentIndex - 1;
     if (newIndex < 0) {
-      newIndex = allArticlesData.articles.length - 1; // Vai all'ultimo elemento se sei al primo
+      newIndex = currentArticles.length - 1; // Vai all'ultimo elemento se sei al primo
     }
     
-    const prevArticleId = allArticlesData.articles[newIndex].idArticle;
+    const prevArticleId = currentArticles[newIndex].idArticle;
     navigate(`/article/${prevArticleId}`);
   };
 
   // Funzione per navigare all'articolo successivo
   const goToNext = () => {
-    if (!allArticlesData.articles || allArticlesData.articles.length === 0) return;
+    if (!currentArticles || currentArticles.length === 0) return;
     
     let newIndex = currentIndex + 1;
-    if (newIndex >= allArticlesData.articles.length) {
+    if (newIndex >= currentArticles.length) {
       newIndex = 0; // Vai al primo elemento se sei all'ultimo
     }
     
-    const nextArticleId = allArticlesData.articles[newIndex].idArticle;
+    const nextArticleId = currentArticles[newIndex].idArticle;
     navigate(`/article/${nextArticleId}`);
   };
 
   // Verifica se l'articolo è già stato acquistato
   const checkIfPurchased = (articleId: string): boolean => {
-    const purchasesJSON = localStorage.getItem("articlePurchases");
-    if (!purchasesJSON) return false;
-    
-    const purchases: PurchaseI[] = JSON.parse(purchasesJSON);
     return purchases.some((purchase) => purchase.articleId === articleId);
   };
 
@@ -135,7 +130,8 @@ const SingleArticleScreen: React.FC = () => {
       return; // L'utente non è connesso
     }
     
-    setIsPurchasing(true);
+    dispatch(setPurchasing(true));
+    dispatch(clearError());
     
     sendTransaction(
       {
@@ -144,11 +140,8 @@ const SingleArticleScreen: React.FC = () => {
       },
       {
         onSuccess: (txHash) => {
-          // Salva l'acquisto nel localStorage
-          const purchasesJSON = localStorage.getItem("articlePurchases");
-          const purchases: PurchaseI[] = purchasesJSON ? JSON.parse(purchasesJSON) : [];
-          
-          const newPurchase: PurchaseI = {
+          // Crea un nuovo acquisto e aggiungilo al Redux store
+          const newPurchase = {
             articleId: article.idArticle,
             articleName: article.strArticle,
             price: article.ethPrice.toString(),
@@ -158,18 +151,17 @@ const SingleArticleScreen: React.FC = () => {
             timestamp: Date.now()
           };
           
-          purchases.push(newPurchase);
-          localStorage.setItem("articlePurchases", JSON.stringify(purchases));
+          dispatch(addPurchase(newPurchase));
           
           // Reindirizza alla pagina di successo
           navigate(`/success/${article.idArticle}`);
         },
         onError: (error: any) => {
-          setErrorTx({
+          dispatch(setError({
             errorName: error.name,
             errorMessage: error.message
-          });
-          setIsPurchasing(false);
+          }));
+          dispatch(setPurchasing(false));
         },
       }
     );
@@ -233,19 +225,19 @@ const SingleArticleScreen: React.FC = () => {
           </div>
         </div>
         
-        {errorTx && (
+        {error && (
           <div className={styles.errorContainer}>
-            <strong>{errorTx.errorName}</strong>
+            <strong>{error.errorName}</strong>
             <div>
-              {errorTx.errorName === "EstimateGasExecutionError" || 
-               errorTx.errorName === "TransactionExecutionError" ? (
+              {error.errorName === "EstimateGasExecutionError" || 
+               error.errorName === "TransactionExecutionError" ? (
                 <div className={styles.errorContent}>
                   <em>
                     Spiacenti, si è verificato un errore durante l'elaborazione della tua richiesta. 
                     L'errore potrebbe essere collegato al rifiuto della transazione o a un saldo insufficiente 
                     per acquistare l'articolo.
                   </em>
-                  <button onClick={() => window.location.reload()}>Riprova</button>
+                  <button onClick={() => dispatch(clearError())}>Riprova</button>
                 </div>
               ) : (
                 <div className={styles.errorContent}>
@@ -253,7 +245,7 @@ const SingleArticleScreen: React.FC = () => {
                     Siamo spiacenti, si è verificato un errore durante l'elaborazione della tua richiesta.
                     Riprova più tardi. Se il problema persiste, contatta l'assistenza tecnica.
                   </em>
-                  <button onClick={() => window.location.reload()}>Riprova</button>
+                  <button onClick={() => dispatch(clearError())}>Riprova</button>
                 </div>
               )}
             </div>
