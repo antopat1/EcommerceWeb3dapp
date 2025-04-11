@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className={style.container}>
         <h4 className={style.text}>
           All &copy; reserved to{" "}
-          <span className={style.brandColor}> -DAPP Web3 Team</span>
+          <span className={style.brandColor}> -Gianni Dapp -- Web3 Team</span>
         </h4>
       </div>
     </footer>
