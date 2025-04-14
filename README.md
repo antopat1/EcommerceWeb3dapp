@@ -1,6 +1,6 @@
 # Web3 Scientific Journal Marketplace
 
-![Project Banner](https://bafybeigavj3at52a3bvvr6wurv5caqmz7asuanuyiqx55uvowgbrmejbse.ipfs.dweb.link)
+![Project Banner](https://bafybeieqbbrjgp6kmsg3vsaeg52lg5hsfaxxd2zkanvcpkhlgh6p2y2aoa.ipfs.dweb.link)
 
 A decentralized marketplace for scientific publications where users can browse, search, and purchase academic articles using cryptocurrency (Ethereum) on the Arbitrum Sepolia test network.
 
