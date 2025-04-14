@@ -145,9 +145,6 @@ The application will be available at `http://localhost:5173/`
    - Confirm the transaction in MetaMask
    - Once the transaction is complete, you'll be redirected to a success page
 
-5. **View Transaction History**:
-   - Your purchase history is stored in the application
-   - Transaction details include price, transaction hash, and timestamp
 
 ## 🧠 Technical Choices
 
@@ -160,7 +157,6 @@ The project uses React with TypeScript to provide type safety and better develop
 Redux Toolkit was chosen for state management to handle complex application state, including:
 - User wallet connection status
 - Search queries and results
-- Purchase history
 - UI state (sidebar, scrolling, etc.)
 
 ### CSS Modules
@@ -186,9 +182,7 @@ Scientific articles and their thumbnails are stored on IPFS to ensure:
 
 3. **Ensure Content Accessibility**: Store content in a decentralized manner to ensure long-term availability.
 
-4. **Provide Fair Compensation**: Enable direct payments to content creators without intermediaries.
-
-5. **Build an Intuitive UI**: Create a user-friendly interface that makes browsing and purchasing content simple.
+4. **Build an Intuitive UI**: Create a user-friendly interface that makes browsing and purchasing content simple.
 
 ## 🔮 Future Improvements
 
@@ -198,15 +192,6 @@ Scientific articles and their thumbnails are stored on IPFS to ensure:
 - **Citation Network**: Visualize connections between articles
 - **Mobile App**: Develop a native mobile application
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
