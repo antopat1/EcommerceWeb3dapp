@@ -185,13 +185,11 @@ Scientific articles and their thumbnails are stored on IPFS to ensure:
 
 4. **Build an Intuitive UI**: Create a user-friendly interface that makes browsing and purchasing content simple.
 
-## 🔮 Future Improvements
+## 🌐 Live Deployment
 
-- **Author Dashboard**: Allow authors to upload and manage their publications
-- **Subscription Model**: Implement ERC-20 token-based subscriptions
-- **Review System**: Add peer review functionality
-- **Citation Network**: Visualize connections between articles
-- **Mobile App**: Develop a native mobile application
+The project is currently deployed and accessible at:  
+🔗 [https://ecommerce-web3dapp-antopat1s-projects.vercel.app/](https://ecommerce-web3dapp-antopat1s-projects.vercel.app/)
+
 
 
 ## 📄 License
