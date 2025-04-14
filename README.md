@@ -106,7 +106,8 @@ yarn install
 3. Create a `.env` file in the root directory with the following variables:
 
 ```
-VITE_ALCHEMY_API_KEY=your_alchemy_api_key
+VITE_PROJECT_ID=your "cloud.reown.com" PROJECT_ID
+VITE_ADDRESS_GIANNI= The Address where recive the payments
 ```
 
 ### Running the Application
