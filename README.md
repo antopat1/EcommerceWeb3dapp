@@ -188,7 +188,8 @@ Scientific articles and their thumbnails are stored on IPFS to ensure:
 ## 🌐 Live Deployment
 
 The project is currently deployed and accessible at:  
-🔗 [https://ecommerce-web3dapp-antopat1s-projects.vercel.app/](https://ecommerce-web3dapp-antopat1s-projects.vercel.app/)
+    
+🔗 [https://ecommerce-web3dapp.vercel.app/](https://ecommerce-web3dapp.vercel.app/)
 
 
 
